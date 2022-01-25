@@ -1,3 +1,24 @@
-index:
+homepage:
     path: /
-    controller: App\Controller\HomePage::index
+    controller: App\Controller\HomePage::homepage
+app_user_index:
+    path: /user
+    controller: App\Controller\UserController::index
+app_user_show:
+    path: /user/{id}
+    controller: App\Controller\UserController::show
+app_user_delete:
+    path: /user/{id}/delete
+    controller: App\Controller\UserController::delete
+app_user_new:
+    path: /user_new
+    controller: App\Controller\UserController::new
+app_user_create:
+    path: /user_create
+    controller: App\Controller\UserController::create
+app_user_modify:
+    path: //user/{id}/modify
+    controller: App\Controller\UserController::modify
+app_user_update:
+    path: /user/{id}/update
+    controller: App\Controller\UserController::update

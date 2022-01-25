@@ -13,9 +13,10 @@ class HomePage extends AbstractController
      * @return Response
      * @Route("/")
      */
+
     public function homepage(): Response
     {
-        $name = "guillaume";
+        $name = 'Guillaume';
         return $this->render('base.html.twig', [
             'name' => $name
         ]);
