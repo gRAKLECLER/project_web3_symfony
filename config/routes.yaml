@@ -17,8 +17,17 @@ app_user_create:
     path: /user_create
     controller: App\Controller\UserController::create
 app_user_modify:
-    path: //user/{id}/modify
+    path: /user/{id}/modify
     controller: App\Controller\UserController::modify
 app_user_update:
     path: /user/{id}/update
     controller: App\Controller\UserController::update
+ads:
+    path: /ads
+    controller: App\Controller\AdController::index
+app_ad_create:
+    path: /ad_create
+    controller: App\Controller\AdController::create
+app_ad_new:
+    path: /create_ad
+    controller: App\Controller\AdController::new

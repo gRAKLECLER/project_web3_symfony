@@ -1,0 +1,27 @@
+<div class="create-ad">
+    <h1>Créer ton annonce</h1>
+
+    <form action="{{ path('app_ad_create') }}" method="post">
+        <div>
+            <label for="title">Titre</label>
+            <input id="title" name="title">
+        </div>
+        <div>
+            <label for="photo">Photo</label>
+            <input id="photo" name="photo">
+        </div>
+        <div>
+            <label for="description">Description</label>
+            <input id="description" name="description">
+        </div>
+        <div>
+            <label for="price">Prix</label>
+            <input type="number" id="price" name="price">
+        </div>
+        <div>
+            <label for="published_date">Date de publication</label>
+            <input type="date" id="published_date" name="published_date">
+        </div>
+        <button type="submit">Publier</button>
+    </form>
+</div>
