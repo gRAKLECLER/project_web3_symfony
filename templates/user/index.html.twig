@@ -7,12 +7,12 @@
 <div class="example-wrapper">
     <a href="{{ path('app_user_new') }}">create user</a>
     <ul>
-        {% for person in user %}
-            <li>{{ person.lastname ? person.lastname : null }} {{ person.firstname }} {{ person.email }}</li>
-            <a href="{{ path('app_user_show', {id: person.id}) }}">
+        {% for user in users %}
+            <li>{{ user.lastname ? user.lastname : null }} {{ user.firstname }} {{ user.email }}</li>
+            <a href="{{ path('app_user_show', {id: user.id}) }}">
                 show page
             </a>
-            <a href="{{ path('app_user_modify', {id: person.id}) }}">
+            <a href="{{ path('app_user_modify', {id: user.id}) }}">
                 update user
             </a>
         {% endfor %}

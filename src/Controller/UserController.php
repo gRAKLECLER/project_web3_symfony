@@ -8,10 +8,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
+    private $hasher;
+    public function __construct(UserPasswordHasherInterface $hasher)
+    {
+        $this->hasher = $hasher;
+    }
     /**
      * @param UserRepository $userRepository
      * @return Response
@@ -23,7 +29,7 @@ class UserController extends AbstractController
         $user = $Repository->findAll();
 
         return $this->render('user/index.html.twig', [
-            'user' => $user,
+            'users' => $user,
         ]);
     }
 
@@ -32,10 +38,10 @@ class UserController extends AbstractController
      * @return Response
      * @Route("/user/{id}", name="app_user_show")
      */
-    public function show(User $user): Response
+    public function showOneUser(User $user): Response
     {
         return $this->render('user/user_show.html.twig', [
-            'user' => $user,
+            'users' => $user,
         ]);
     }
 
@@ -44,7 +50,7 @@ class UserController extends AbstractController
      * @return Response
      * @Route("/user/{id}/delete", name="app_user_delete")
      */
-    public function delete(User $user, EntityManagerInterface $entityManager): Response
+    public function deleteUser(User $user, EntityManagerInterface $entityManager): Response
     {
         $entityManager->remove($user);
         $entityManager->flush();
@@ -56,7 +62,7 @@ class UserController extends AbstractController
      * @return Response
      * @Route("/user_new", name="app_user_new")
      */
-    public function new():Response
+    public function createNewUser():Response
     {
         return $this->render('user/user_new.html.twig');
     }
@@ -67,12 +73,15 @@ class UserController extends AbstractController
      * @return Response
      * @Route ("/user_create", name="app_user_create", methods={"POST"})
      */
-    public function create(EntityManagerInterface $entityManager, Request $request): Response
+    public function submitUser(EntityManagerInterface $entityManager, Request $request): Response
     {
         $user = new User();
         $user->setFirstname($request->request->get('fistName'))
              ->setLastname($request->request->get('lastName'))
-             ->setEmail($request->request->get('email'));
+             ->setEmail($request->request->get('email'))
+            ->setRoles((array)$request->request->get('role'))
+            ->setPassword($this->hasher->hashPassword($user, $request->request->get('password')));
+
 
         $entityManager->persist($user);
         $entityManager->flush();
@@ -87,7 +96,7 @@ class UserController extends AbstractController
      * @return Response
      * @Route("/user/{id}/modify", name="app_user_modify")
      */
-    public function modify(User $user): Response
+    public function modifyUser(User $user): Response
     {
         return $this->render('user/user_modify.html.twig', [
             'user' => $user,
@@ -101,11 +110,14 @@ class UserController extends AbstractController
      * @return Response
      * @Route ("/user/{id}/update", name="app_user_update", methods={"POST"})
      */
-    public function update(User $user, EntityManagerInterface $entityManager, Request $request): Response
+    public function updateUser(User $user, EntityManagerInterface $entityManager, Request $request): Response
     {
         $user->setFirstname($request->request->get('fistName'))
             ->setLastname($request->request->get('lastName'))
-            ->setEmail($request->request->get('email'));
+            ->setEmail($request->request->get('email'))
+            ->setRoles((array)$request->request->get('role'))
+            ->setPassword($request->request->get('password'));
+
 
         $entityManager->flush();
 

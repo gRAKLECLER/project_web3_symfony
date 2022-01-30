@@ -5,10 +5,15 @@
     </style>
 
     <div class="example-wrapper">
-        <p>{{ user.firstname }}</p>
-        <p>{{ user.lastname }}</p>
-        <p>{{ user.email }}</p>
-        <a href="{{ path('app_user_delete', {id: user.id}) }}">
+        {{ dump(users) }}
+        <p>{{ users.firstname }}</p>
+        <p>{{ users.lastname }}</p>
+        <p>{{ users.email }}</p>
+        <p>{{ users.password }}</p>
+        {% for role in users.roles %}
+            <p>{{ role }}</p>
+        {% endfor %}
+        <a href="{{ path('app_user_delete', {id: users.id}) }}">
             Delete user
         </a>
     </div>
