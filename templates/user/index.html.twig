@@ -3,19 +3,24 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
+ {% if app.user %}
+<div>
+    you are logged {{ app.user.firstname }} - {{ app.user.email }}
+    <a href="{{ path('app_logout') }}">logout</a>
+</div>
 <div class="example-wrapper">
     <a href="{{ path('app_user_new') }}">create user</a>
     <ul>
-        {% for person in user %}
-            <li>{{ person.lastname ? person.lastname : null }} {{ person.firstname }} {{ person.email }}</li>
-            <a href="{{ path('app_user_show', {id: person.id}) }}">
+        {% for user in users %}
+            <li>{{ user.lastname ? user.lastname : null }} {{ user.firstname }} {{ user.email }}</li>
+            <a href="{{ path('app_user_show', {id: user.id}) }}">
                 show page
             </a>
-            <a href="{{ path('app_user_modify', {id: person.id}) }}">
+            <a href="{{ path('app_user_modify', {id: user.id}) }}">
                 update user
             </a>
         {% endfor %}
     </ul>
 </div>
+ {% endif %}
 {% endblock %}

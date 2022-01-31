@@ -6,19 +6,25 @@ app_user_index:
     controller: App\Controller\UserController::index
 app_user_show:
     path: /user/{id}
-    controller: App\Controller\UserController::show
+    controller: App\Controller\UserController::showOneUser
 app_user_delete:
     path: /user/{id}/delete
-    controller: App\Controller\UserController::delete
+    controller: App\Controller\UserController::deleteUser
 app_user_new:
     path: /user_new
-    controller: App\Controller\UserController::new
+    controller: App\Controller\UserController::createNewUser
 app_user_create:
     path: /user_create
-    controller: App\Controller\UserController::create
+    controller: App\Controller\UserController::submitUser
 app_user_modify:
-    path: //user/{id}/modify
-    controller: App\Controller\UserController::modify
+    path: /user/{id}/modify
+    controller: App\Controller\UserController::modifyUser
 app_user_update:
     path: /user/{id}/update
-    controller: App\Controller\UserController::update
+    controller: App\Controller\UserController::updateUser
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
