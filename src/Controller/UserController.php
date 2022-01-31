@@ -5,12 +5,16 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class UserController extends AbstractController
 {
     private $hasher;
@@ -25,11 +29,12 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
-
+        $loggedUser = $this->getUser();
         $user = $userRepository->findAll();
 
         return $this->render('user/index.html.twig', [
             'users' => $user,
+            'loggedUser' => $loggedUser,
         ]);
     }
 
@@ -115,8 +120,7 @@ class UserController extends AbstractController
         $user->setFirstname($request->request->get('fistName'))
             ->setLastname($request->request->get('lastName'))
             ->setEmail($request->request->get('email'))
-            ->setRoles((array)$request->request->get('role'))
-            ->setPassword($request->request->get('password'));
+            ->setRoles((array)$request->request->get('role'));
 
 
         $entityManager->flush();
