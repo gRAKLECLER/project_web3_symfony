@@ -16,10 +16,6 @@ class HomePage extends AbstractController
 
     public function homepage(): Response
     {
-        $name = 'Guillaume';
-        return $this->render('base.html.twig', [
-            'name' => $name
-        ]);
 
     }
 }

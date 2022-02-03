@@ -1,30 +1,39 @@
-<div class="example-wrapper">
-    <h1>New User</h1>
+{% extends 'base.html.twig' %}
 
-    <form action="{{ path('app_user_create') }}" method="post">
-        <div>
-            <label for="firstName">first name</label>
-            <input id="firstName" name="fistName">
-        </div>
-        <div>
-            <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName">
-        </div>
-        <div>
-            <label for="email">email</label>
-            <input type="email" id="email" name="email">
-        </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <div>
-            <label for="role_seller">seller</label>
-            <input type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]">
+{% block body %}
+    <body class="text-center">
+        <main class="container">
+            <h1>Register</h1>
+            <form class="d-flex flex-column justify-content-center align-items-center" action="{{ path('app_user_create') }}" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="firstName">first name</label>
+                    <input class="form-control" id="firstName" name="fistName">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="lastName">Last name</label>
+                    <input class="form-control" id="lastName" name="lastName">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="email">email</label>
+                    <input class="form-control" type="email" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">password</label>
+                    <input class="form-control" type="password" id="password" name="password">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]">
+                    <label class="form-check-label" for="role_seller">seller</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]">
+                    <label class="form-check-label" for="role_buyer">
+                        buyer
+                    </label>
+                </div>
+                <button class="btn btn-primary" type="submit">submit</button>
+            </form>
+        </main>
+    </body>
+{% endblock %}
 
-            <label for="role_buyer">buyer</label>
-            <input type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]">
-        </div>
-        <button type="submit">submit</button>
-    </form>
-</div>
