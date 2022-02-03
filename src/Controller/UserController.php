@@ -73,7 +73,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
-     * @Route ("/user_new", name="app_user_create", methods={"POST"})
+     * @Route ("/register", name="app_user_register", methods={"POST"})
      */
     public function submitUser(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -82,7 +82,8 @@ class UserController extends AbstractController
              ->setLastname($request->request->get('lastName'))
              ->setEmail($request->request->get('email'))
             ->setRoles((array)$request->request->get('role'))
-            ->setPassword($this->hasher->hashPassword($user, $request->request->get('password')));
+            ->setPassword($this->hasher->hashPassword($user, $request->request->get('password')))
+            ->setVotes(rand(-10, 50));
 
 
         $entityManager->persist($user);
@@ -120,6 +121,30 @@ class UserController extends AbstractController
 
         $entityManager->flush();
 
+        return $this->redirectToRoute('app_user_show', [
+            'id' => $user->getId()
+        ]);
+    }
+
+
+    /**
+     * @param User $user
+     * @param Request $request
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @Route("/user/{id}/vote", name="app_user_vote", methods="POST")
+     */
+    public function userVote(User $user, Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $vote = $request->request->get('vote');
+        if ($vote === 'up'){
+            $user->upVote();
+        }
+        if ($vote === 'down'){
+            $user->downVote();
+        }
+
+        $entityManager->flush();
         return $this->redirectToRoute('app_user_show', [
             'id' => $user->getId()
         ]);
