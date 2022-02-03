@@ -10,8 +10,8 @@ app_user_show:
 app_user_delete:
     path: /user/{id}/delete
     controller: App\Controller\UserController::deleteUser
-app_user_new:
-    path: /user_new
+app_user_register:
+    path: /register
     controller: App\Controller\UserController::createNewUser
 app_user_create:
     path: /user_create

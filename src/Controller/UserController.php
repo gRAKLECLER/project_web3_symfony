@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @IsGranted("ROLE_USER")
- */
 class UserController extends AbstractController
 {
     private $hasher;
@@ -76,7 +73,7 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $entityManager
      * @param Request $request
      * @return Response
-     * @Route ("/user_create", name="app_user_create", methods={"POST"})
+     * @Route ("/user_new", name="app_user_create", methods={"POST"})
      */
     public function submitUser(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -91,9 +88,7 @@ class UserController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();
 
-        return $this->redirectToRoute('app_user_show', [
-           'id' => $user->getId()
-        ]);
+        return $this->redirectToRoute('app_login');
     }
 
     /**
