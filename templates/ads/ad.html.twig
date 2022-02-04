@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div>
+
+    <h1>{{ ad.title }}</h1>
+    <h1>{{ ad.description }}</h1>
+
+    {# <form action="{{ path('app_user_vote', { id: ad.id }) }}" method="post"> 
+        <button name="vote" value="up" class="btn btn-primary">vote up</button>
+        <button name="vote" value="down" class="btn btn-danger">vote down</button>
+        <span>{{ user.votes }}</span>
+    </form> #}
+
+</div>
+
+{% endblock %}

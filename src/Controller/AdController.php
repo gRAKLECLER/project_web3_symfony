@@ -35,7 +35,7 @@ class AdController extends AbstractController
      */
     public function show(Ad $ad): Response
     {
-        return $this->render('ads/ads_show.html.twig', [
+        return $this->render('ads/ad.html.twig', [
             'ad' => $ad,
         ]);
     }
@@ -155,6 +155,21 @@ class AdController extends AbstractController
 
         return $this->render('ads/search.html.twig', [
             'coucou' => $coucou,
+        ]);
+    }
+
+     /**
+     * @param Ad $ad
+     * @param App\Entity\User
+     * @return Response
+     * @Route("/ad/{id}", name="app_ad")
+     */
+    public function showOneAd(Ad $ad): Response
+    {
+
+        return $this->render('ads/ad.html.twig', [
+            'ad' => $ad,
+            'user' => $this->user->getUser()
         ]);
     }
 }

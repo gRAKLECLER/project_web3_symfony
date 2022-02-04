@@ -6,7 +6,7 @@
             <h1>Register</h1>
             <form class="d-flex flex-column justify-content-center align-items-center" action="{{ path('app_user_create') }}" method="post">
                 <div class="mb-3">
-                    <label class="form-label" for="firstName">first name</label>
+                    <label class="form-label" for="firstName">First name</label>
                     <input class="form-control" id="firstName" name="fistName">
                 </div>
                 <div class="mb-3">
@@ -14,25 +14,29 @@
                     <input class="form-control" id="lastName" name="lastName">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="email">email</label>
+                    <label class="form-label" for="email">Email</label>
                     <input class="form-control" type="email" id="email" name="email">
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">password</label>
+                    <label class="form-label" for="password">Password</label>
                     <input class="form-control" type="password" id="password" name="password">
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]">
-                    <label class="form-check-label" for="role_seller">seller</label>
+                    <label class="form-check-label" for="role_seller">Seller</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]">
                     <label class="form-check-label" for="role_buyer">
-                        buyer
+                        Buyer
                     </label>
                 </div>
-                <button class="btn btn-primary" type="submit">submit</button>
-                <a href="{{ path('app_login') }}">if you're already register</a>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" id="role_admin" name="role[]">
+                    <label class="form-check-label" for="role_admin">Admin</label>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <a href="{{ path('app_login') }}">If you're already had a account</a>
             </form>
         </main>
     </body>

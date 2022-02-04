@@ -41,3 +41,6 @@ app_ad_new:
 app_ad_search:
   path: /ad_search
   controller: App\Controller\AdController::findAdByName
+app_ad:
+    path: /ad/{id}
+    controller: App\Controller\AdController::showOneAd
