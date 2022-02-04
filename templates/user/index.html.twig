@@ -6,10 +6,6 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
  {% if app.user %}
-<div>
-    you are logged {{ app.user.firstname }} - {{ app.user.email }}
-    <a href="{{ path('app_logout') }}">logout</a>
-</div>
 <div class="example-wrapper">
     <a href="{{ path('app_user_new') }}">create user</a>
     <ul>

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .ad-container { background: red; margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    </style>
+
+    <h1>All Ads</h1>
+
+    <ul>
+        {% for ad in ads %}
+            <li>{{ ad.title }} - {{ad.description}} - {{ad.price}}€</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
