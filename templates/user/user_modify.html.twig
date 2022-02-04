@@ -1,46 +1,52 @@
-<div class="example-wrapper">
-    <h1>New User</h1>
+{% extends 'base.html.twig' %}
 
-    <form action="{{ path('app_user_update', {id: user.id}) }}" method="post">
-        <div>
-            <label for="firstName">first name</label>
-            <input id="firstName" name="fistName" value="{{ user.firstName|default('') }}">
-        </div>
-        <div>
-            <label for="lastName">Last name</label>
-            <input id="lastName" name="lastName" value="{{ user.lastName|default('') }}">
-        </div>
-        <div>
-            <label for="email">email</label>
-            <input type="email" id="email" name="email" value="{{ user.email|default('') }}">
-        </div>
-        <div>
-            <label for="password">password</label>
-            <input type="password" id="password" name="password" value="">
-        </div>
-        <div>
-            <label for="role_admin">admin</label>
-            {% if 'admin' in user.roles %}
-                <input type="checkbox" value="ROLE_ADMIN" id="role_admin" name="role[]" checked>
-            {% else %}
-                <input type="checkbox" value="ROLE_ADMIN" id="role_admin" name="role[]">
-            {% endif%}
+{% block body %}
+    <body class="text-center">
+        <main class="container">
+            <h1>New User</h1>
+            <form class="d-flex flex-column justify-content-center align-items-center" action="{{ path('app_user_update', {id: user.id}) }}" method="post">
+                <div class="mb-3">
+                    <label class="form-label" for="firstName">first name</label>
+                    <input class="from-control" id="firstName" name="fistName" value="{{ user.firstName|default('') }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="lastName">Last name</label>
+                    <input class="from-control" id="lastName" name="lastName" value="{{ user.lastName|default('') }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="email">email</label>
+                    <input class="from-control" type="email" id="email" name="email" value="{{ user.email|default('') }}">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="password">password</label>
+                    <input class="from-control" type="password" id="password" name="password" value="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-check-label" for="role_admin">admin</label>
+                    {% if 'ROLE_ADMIN' in user.roles %}
+                        <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" id="role_admin" name="role[]" checked>
+                    {% else %}
+                        <input class="form-check-input" type="checkbox" value="ROLE_ADMIN" id="role_admin" name="role[]">
+                    {% endif%}
+                    <label class="form-check-label" for="role_seller">seller</label>
+                    {% if 'ROLE_SELLER' in user.roles %}
+                        <input class="form-check-input" type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]" checked>
+                    {% else %}
+                        <input class="form-check-input" type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]">
+                    {% endif%}
 
-            <label for="role_seller">seller</label>
-            {% if 'seller' in user.roles %}
-                <input type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]" checked>
-            {% else %}
-                <input type="checkbox" value="ROLE_SELLER" id="role_seller" name="role[]">
-            {% endif%}
+                    <label class="form-check-label" for="role_buyer">buyer</label>
+                    {% if 'ROLE_BUYER' in user.roles %}
+                    <input class="form-check-input" type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]" checked>
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]">
+                    {% endif%}
 
-            <label for="role_buyer">buyer</label>
-            {% if 'buyer' in user.roles %}
-            <input type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]" checked>
-            {% else %}
-            <input type="checkbox" value="ROLE_BUYER" id="role_buyer" name="role[]">
-            {% endif%}
+                </div>
+                <button class="btn btn-primary" type="submit">submit</button>
+                <a href="{{ path('app_user_index') }}">go back</a>
+            </form>
+        </main>
+    </body>
+{% endblock %}
 
-        </div>
-        <button type="submit">submit</button>
-    </form>
-</div>
