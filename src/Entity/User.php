@@ -46,6 +46,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $votes = 0;
+
 
     public function getId(): ?int
     {
@@ -139,6 +144,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUsername(): string
     {
         return (string)$this->email;
+    }
+
+    public function getVotes(): ?int
+    {
+        return $this->votes;
+    }
+
+    public function upVote():self
+    {
+        $this->votes++;
+        return $this;
+    }
+
+    public function downVote():self
+    {
+        $this->votes--;
+        return $this;
     }
 
 }

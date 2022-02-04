@@ -28,6 +28,7 @@ use Zenstruck\Foundry\Proxy;
  */
 final class UserFactory extends ModelFactory
 {
+    private $roles = ['ROLE_ADMIN', 'ROLE_SELLER', 'ROLE_BUYER'];
     public function __construct()
     {
         parent::__construct();
@@ -48,7 +49,9 @@ final class UserFactory extends ModelFactory
     {
         return $this->afterInstantiate(function(User $user) {
             $email = strtolower($user->getFirstname()) . "." . strtolower($user->getLastname()) ."@gmail.com";
+            $role = array_rand(array_flip($this->roles), 2);
             $user->setEmail($email);
+            $user->setRoles($role);
         })
         ;
     }
