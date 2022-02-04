@@ -151,10 +151,10 @@ class AdController extends AbstractController
     {
 
         $ads = $request->request->get('search');
-        $coucou = $Repository->searchArticles($ads);
+        $articlesFound = $Repository->searchArticles($ads);
 
         return $this->render('ads/search.html.twig', [
-            'coucou' => $coucou,
+            'articlesFound' => $articlesFound,
         ]);
     }
 
