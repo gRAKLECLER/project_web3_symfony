@@ -82,8 +82,7 @@ class UserController extends AbstractController
              ->setLastname($request->request->get('lastName'))
              ->setEmail($request->request->get('email'))
             ->setRoles((array)$request->request->get('role'))
-            ->setPassword($this->hasher->hashPassword($user, $request->request->get('password')))
-            ->setVotes(rand(-10, 50));
+            ->setPassword($this->hasher->hashPassword($user, $request->request->get('password')));
 
 
         $entityManager->persist($user);
