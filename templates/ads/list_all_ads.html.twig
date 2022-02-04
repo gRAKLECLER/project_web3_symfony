@@ -4,16 +4,9 @@
         {# .example-wrapper code { background: #F5F5F5; padding: 2px 6px; } #}
 </style>
 <h1>Hello Ads</h1>
-<p>cccc</p>
-
-    <p>Titre</p>
-    <p>Prix</p>
-    <p>Description</p>
     <ul>
         {% for ad in ads %}
             <li>{{ ad.title }} - {{ad.description}} - {{ad.price}}€</li>
         {% endfor %}
     </ul>
-
-
 {% endblock %}
