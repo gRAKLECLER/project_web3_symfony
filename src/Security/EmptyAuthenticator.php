@@ -42,7 +42,7 @@ class EmptyAuthenticator extends AbstractAuthenticator implements Authentication
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('app_user_index'));
+        return new RedirectResponse($this->urlGenerator->generate('ads'));
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

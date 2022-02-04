@@ -1,6 +1,3 @@
-homepage:
-    path: /
-    controller: App\Controller\HomePage::homepage
 app_user_index:
     path: /user
     controller: App\Controller\UserController::index
@@ -10,18 +7,28 @@ app_user_show:
 app_user_delete:
     path: /user/{id}/delete
     controller: App\Controller\UserController::deleteUser
-app_user_new:
-    path: /user_new
+app_user_register:
+    path: /register
     controller: App\Controller\UserController::createNewUser
 app_user_create:
     path: /user_create
     controller: App\Controller\UserController::submitUser
 app_user_modify:
     path: /user/{id}/modify
-    controller: App\Controller\UserController::modify
+    controller: App\Controller\UserController::modifyUser
 app_user_update:
     path: /user/{id}/update
-    controller: App\Controller\UserController::update
+    controller: App\Controller\UserController::updateUser
+app_user_vote:
+    path: /user/{id}/vote
+    controller: App\Controller\UserController::userVote
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+app_logout:
+    path: /logout
+    controller: App\Controller\SecurityController::logout
+
 ads:
     path: /ads
     controller: App\Controller\AdController::index
@@ -34,11 +41,3 @@ app_ad_new:
 app_ad_search:
     path: /ad_search
     controller: App\Controller\AdController::findAdByName
-
-#     controller: App\Controller\UserController::modifyUser
-# app_user_update:
-#     path: /user/{id}/update
-#     controller: App\Controller\UserController::updateUser
-# app_login:
-#     path: /login
-#     controller: App\Controller\SecurityController::login

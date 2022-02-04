@@ -1,18 +1,11 @@
+{% extends 'base.html.twig' %}
+
 {% block body %}
 <style>
     .ad-container { background: red; margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
 </style>
 
-   <form role="search" method="post" action="{{ path('app_ad_search') }}">
-        <div>
-          <input type="text" placeholder="Search" name="search" value="{{app.request.query.get('s') | default('')}}">
-          <span>
-            <button type="submit">Search Ad</button>
-          </span>
-        </div>
-      </form>
-
-<h1>Hello Ads</h1>
+<h1>All Ads</h1>
 
     <ul>
         {% for ad in ads %}
