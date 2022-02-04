@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Controller\UserController;
 use App\Utils\UploadUtils;
 use App\Repository\AdRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,8 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdController extends AbstractController
 {
+
+    public function __construct(UserController $user) {
+        $this->user = $user;
+    }
+
     /**
-     * @param AdRepository $AdRepository
+     * @param AdRepository $AdRepository 
      * @return Response
      * @Route("/ads", name="app_ads_index")
      */
@@ -25,18 +31,6 @@ class AdController extends AbstractController
 
         return $this->render('ads/list_all_ads.html.twig', [
             'ads' => $ads,
-        ]);
-    }
-
-    /**
-     * @param Ad $ad
-     * @return Response
-     * @Route("/ad/{id}", name="app_ad_show")
-     */
-    public function show(Ad $ad): Response
-    {
-        return $this->render('ads/ads_show.html.twig', [
-            'ad' => $ad,
         ]);
     }
 
@@ -157,4 +151,20 @@ class AdController extends AbstractController
             'coucou' => $coucou,
         ]);
     }
+    
+     /**
+     * @param Ad $ad
+     * @param App\Entity\User
+     * @return Response
+     * @Route("/ad/{id}", name="app_ad")
+     */
+    public function showOneAd(Ad $ad): Response
+    {
+
+        return $this->render('ads/ad.html.twig', [
+            'ads' => $ad,
+            'user' => $this->user->getUser()
+        ]);
+    }
+
 }

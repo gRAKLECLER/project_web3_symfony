@@ -7,15 +7,7 @@
     </style>
 
     <div class="example-wrapper">
-        {{ dump(users) }}
         <a href="{{ path('app_user_index') }}">go back</a>
-        <div>
-            <form action="{{ path('app_user_vote', { id: users.id }) }}" method="post">
-                <button name="vote" value="up" class="btn btn-primary">vote up</button>
-                <button name="vote" value="down" class="btn btn-danger">vote down</button>
-                <span>{{ users.votes }}</span>
-            </form>
-        </div>
         <p>{{ users.firstname }}</p>
         <p>{{ users.lastname }}</p>
         <p>{{ users.email }}</p>

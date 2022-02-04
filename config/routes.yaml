@@ -28,6 +28,9 @@ app_login:
 app_logout:
     path: /logout
     controller: App\Controller\SecurityController::logout
+app_settings:
+    path: /settings
+    controller: App\Controller\UserController::settings
 
 ads:
     path: /ads
@@ -41,3 +44,6 @@ app_ad_new:
 app_ad_search:
     path: /ad_search
     controller: App\Controller\AdController::findAdByName
+app_ad:
+    path: /ad/{id}
+    controller: App\Controller\AdController::showOneAd

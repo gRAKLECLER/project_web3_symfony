@@ -9,7 +9,11 @@
 
     <ul>
         {% for ad in ads %}
-            <li>{{ ad.title }} - {{ad.description}} - {{ad.price}}€</li>
+            <li>
+                <a href="{{ path('app_ad', {id: ad.id}) }}">
+                    {{ ad.title }} - {{ad.description}} - {{ad.price}}€
+                </a>
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

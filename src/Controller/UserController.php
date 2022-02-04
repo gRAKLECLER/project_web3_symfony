@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\App;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -136,6 +137,7 @@ class UserController extends AbstractController
     public function userVote(User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
         $vote = $request->request->get('vote');
+
         if ($vote === 'up'){
             $user->upVote();
         }
@@ -144,7 +146,7 @@ class UserController extends AbstractController
         }
 
         $entityManager->flush();
-        return $this->redirectToRoute('app_user_show', [
+        return $this->redirectToRoute('app_ad', [
             'id' => $user->getId()
         ]);
     }

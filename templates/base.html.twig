@@ -25,17 +25,23 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{path('ads')}}">Home</a>
       </li>
-      {# <li class="nav-item">
-        <a class="nav-link" href="{{path('app_user_update', {id:app.user.name})}}">Settings</a>
+{# {{      dump(app, user)
+}}       #}
+{# <li class="nav-item">
+        <a class="nav-link" href="{{path('app_user_update', {id:user.id})}}">Settings</a>
       </li> #}
+
+<li class="nav-item">
+        <a class="nav-link" href="{{path('app_login')}}">Login</a>
+      </li>
+
       <li class="nav-item">
-        <a class="nav-link" href="{{path('app_logout')}}">Log out</a>
+        <a class="nav-link" href="{{path('app_logout')}}">Logout</a>
       </li>
       {% if is_granted('ROLE_ADMIN') %}
       <li class="nav-item active">
         <a class="nav-link" href="{{path('app_user_index')}}">Users</a>
       </li>
-
       {% endif %}
     </ul>
 
