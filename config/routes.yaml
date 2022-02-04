@@ -10,24 +10,35 @@ app_user_show:
 app_user_delete:
     path: /user/{id}/delete
     controller: App\Controller\UserController::deleteUser
-app_user_register:
-    path: /register
+app_user_new:
+    path: /user_new
     controller: App\Controller\UserController::createNewUser
 app_user_create:
     path: /user_create
     controller: App\Controller\UserController::submitUser
 app_user_modify:
     path: /user/{id}/modify
-    controller: App\Controller\UserController::modifyUser
+    controller: App\Controller\UserController::modify
 app_user_update:
     path: /user/{id}/update
-    controller: App\Controller\UserController::updateUser
-app_user_vote:
-    path: /user/{id}/vote
-    controller: App\Controller\UserController::userVote
-app_login:
-    path: /login
-    controller: App\Controller\SecurityController::login
-app_logout:
-    path: /logout
-    controller: App\Controller\SecurityController::logout
+    controller: App\Controller\UserController::update
+ads:
+    path: /ads
+    controller: App\Controller\AdController::index
+app_ad_create:
+    path: /ad_create
+    controller: App\Controller\AdController::create
+app_ad_new:
+    path: /create_ad
+    controller: App\Controller\AdController::new
+app_ad_search:
+    path: /ad_search
+    controller: App\Controller\AdController::findAdByName
+
+#     controller: App\Controller\UserController::modifyUser
+# app_user_update:
+#     path: /user/{id}/update
+#     controller: App\Controller\UserController::updateUser
+# app_login:
+#     path: /login
+#     controller: App\Controller\SecurityController::login

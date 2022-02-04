@@ -1,6 +1,7 @@
 <?php
 
 use App\Kernel;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 
 require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 

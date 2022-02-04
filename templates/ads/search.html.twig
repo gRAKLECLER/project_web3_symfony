@@ -1,0 +1,14 @@
+{% block body %}
+<div>
+  {% if coucou | length == 0 %}
+    <h1>Aucun résulat pour votre recherche.</h1>
+  {% else %}
+
+    <h1 class="mt-3">Vos résulats de recherche :</h1>
+        {% for cc in coucou %}
+            <div class="mt-3 p-3 bg-light border rounded">
+                <li>{{ cc.title }} - {{cc.description}} - {{cc.price}}€</li>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

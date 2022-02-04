@@ -284,10 +284,6 @@
     "symfony/options-resolver": {
         "version": "v5.4.3"
     },
-    "symfony/polyfill-intl-grapheme": {
-        "version": "v1.24.0"
-    },
-    "symfony/polyfill-intl-idn": {
     "symfony/password-hasher": {
         "version": "v5.4.3"
     },

@@ -146,4 +146,15 @@ class AdController extends AbstractController
 
       return new Response('file moved');
     }
+
+    public function findAdByName(AdRepository $Repository, Request $request): Response
+    {
+        
+        $ads = $request->request->get('search');
+        $coucou = $Repository->searchArticles($ads);
+
+        return $this->render('ads/search.html.twig', [
+            'coucou' => $coucou,
+        ]);
+    }
 }

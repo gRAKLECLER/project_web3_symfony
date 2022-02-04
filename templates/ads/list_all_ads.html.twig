@@ -1,9 +1,19 @@
 {% block body %}
 <style>
     .ad-container { background: red; margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        {# .example-wrapper code { background: #F5F5F5; padding: 2px 6px; } #}
 </style>
+
+   <form role="search" method="post" action="{{ path('app_ad_search') }}">
+        <div>
+          <input type="text" placeholder="Search" name="search" value="{{app.request.query.get('s') | default('')}}">
+          <span>
+            <button type="submit">Search Ad</button>
+          </span>
+        </div>
+      </form>
+
 <h1>Hello Ads</h1>
+
     <ul>
         {% for ad in ads %}
             <li>{{ ad.title }} - {{ad.description}} - {{ad.price}}€</li>
