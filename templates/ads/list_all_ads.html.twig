@@ -6,10 +6,14 @@
 <h1>Hello Ads</h1>
 <p>cccc</p>
 
-<div class="ad-container">
     <p>Titre</p>
     <p>Prix</p>
     <p>Description</p>
-</div>
+    <ul>
+        {% for ad in ads %}
+            <li>{{ ad.title }} - {{ad.description}} - {{ad.price}}€</li>
+        {% endfor %}
+    </ul>
+
 
 {% endblock %}

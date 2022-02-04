@@ -23,9 +23,9 @@ class Ad
     private $title;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $photo = [];
+    private $photo;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -38,7 +38,7 @@ class Ad
     private $price = 0;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $published_date;
 
@@ -69,7 +69,7 @@ class Ad
         return $this->photo;
     }
 
-    public function setPhoto(?array $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
@@ -105,7 +105,7 @@ class Ad
         return $this->published_date;
     }
 
-    public function setPublishedDate(?\DateTimeInterface $published_date): self
+    public function setPublishedDate(?string $published_date): self
     {
         $this->published_date = $published_date;
 
@@ -117,10 +117,16 @@ class Ad
         return $this->tags;
     }
 
-    public function setTags(?array $tags): self
+    public function setTags(?string $tags): self
     {
         $this->tags = $tags;
 
         return $this;
+    }
+
+    public function getImagePath() {
+        return $this->getImageFileName() === null ?
+        UploadHelper::DEFAULT_IMAGE :
+        UploadHelper::QUESTION_IMAGE . '/' . $this->getImageFileName();
     }
 }
